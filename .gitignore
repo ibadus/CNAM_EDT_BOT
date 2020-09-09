@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+.DS_Store
+config.json
+EDT/EDT1.ics
+EDT/EDT2.ics
