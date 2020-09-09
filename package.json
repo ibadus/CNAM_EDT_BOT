@@ -1,0 +1,15 @@
+{
+  "name": "cnam_edt_bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "ibadus#0300",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "request": "^2.88.2"
+  }
+}
