@@ -1,6 +1,13 @@
 const fs = require('fs');
 const request = require('request');
-const {url1, url2, webhook} = require('./config.json');
+const ical = require('ical')
+const moment = require('moment')
+const date = require('date')
+const webhook = require('webhook-discord')
+const {url1, url2, webhook1, webhook2} = require('./config.json');
+
+var path_file1 = "/EDT/EDT1.ics"
+var path_file2 = "/EDT/EDT2.ics"
 
 function download(url, destination, cb) {
     const file = fs.createWriteStream(destination);
@@ -30,7 +37,9 @@ function download(url, destination, cb) {
     });
 };
 
-const destinationGroupe1 = __dirname + "/EDT/EDT1.ics";
+const destinationGroupe1 = __dirname + path_file1;
+const destinationGroupe2 = __dirname + path_file2;
+
 
 download(url1, destinationGroupe1, (err) => {
     if (err) {
@@ -38,8 +47,6 @@ download(url1, destinationGroupe1, (err) => {
         return;
     }
 });
-
-const destinationGroupe2 = __dirname + "/EDT/EDT2.ics";
 
 download(url2, destinationGroupe2, (err) => {
     if (err) {
@@ -49,8 +56,20 @@ download(url2, destinationGroupe2, (err) => {
 });
 console.log('Téléchargement terminé !');
 
+// .ics parse + webhook PART
+const ical_parser_sender = require('./ical.js')
 
+var path_file1 = './EDT/EDT1.ics'
+var path_file2 = './EDT/EDT2.ics'
+try {
+    ical_parser_sender.execute(fs, ical, webhook, date, moment, path_file1, webhook1);
+    ical_parser_sender.execute(fs, ical, webhook, date, moment, path_file2, webhook2);    
+} catch (err) {
+    console.error(err)
+}
 
+// delete PART
 
+const delete_file = require('./delete.js');
 
-// DELET PART
+//delete_file.execute(fs, destinationGroupe1, destinationGroupe2);

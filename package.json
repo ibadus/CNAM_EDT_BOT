@@ -9,7 +9,11 @@
   "author": "ibadus#0300",
   "license": "MIT",
   "dependencies": {
+    "date": "^1.0.2",
     "fs": "0.0.1-security",
-    "request": "^2.88.2"
+    "ical": "^0.8.0",
+    "moment": "^2.27.0",
+    "request": "^2.88.2",
+    "webhook-discord": "^3.7.5"
   }
 }
